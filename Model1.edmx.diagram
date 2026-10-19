@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bb4f4c17681244918f2aabf864352e1d" Name="Diagram1" ZoomLevel="111">
+        <EntityTypeShape EntityType="up1Model.Campaigns" Width="1.5" PointX="5.125" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="up1Model.CampaignUpdates" Width="1.5" PointX="7.375" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="up1Model.Categories" Width="1.5" PointX="15.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="up1Model.Comments" Width="1.5" PointX="10.375" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="up1Model.Donations" Width="1.5" PointX="7.375" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="up1Model.Favorites" Width="1.5" PointX="7.375" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="up1Model.LoginHistory" Width="1.5" PointX="5.125" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="up1Model.Notifications" Width="1.5" PointX="10.375" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="up1Model.Reports" Width="1.5" PointX="10.375" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="up1Model.Roles" Width="1.5" PointX="3.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="up1Model.sysdiagrams" Width="1.5" PointX="5.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="up1Model.Users" Width="1.5" PointX="2.875" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="up1Model.vw_CampaignsFull" Width="3.5" PointX="10.75" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="up1Model.FK__Campaigns__Creat__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="up1Model.FK__Donations__Campa__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="up1Model.FK_Campaigns_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="up1Model.FK_CampaignUpdates_Campaign" ManuallyRouted="false" />
+        <AssociationConnector Association="up1Model.FK_Comments_Campaign" ManuallyRouted="false" />
+        <AssociationConnector Association="up1Model.FK_Favorites_Campaign" ManuallyRouted="false" />
+        <AssociationConnector Association="up1Model.FK_Notifications_Campaign" ManuallyRouted="false" />
+        <AssociationConnector Association="up1Model.FK_Reports_Campaign" ManuallyRouted="false" />
+        <AssociationConnector Association="up1Model.FK_Comments_User" ManuallyRouted="false" />
+        <AssociationConnector Association="up1Model.FK__Donations__UserI__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="up1Model.FK_Favorites_User" ManuallyRouted="false" />
+        <AssociationConnector Association="up1Model.FK_LoginHistory_User" ManuallyRouted="false" />
+        <AssociationConnector Association="up1Model.FK_Notifications_User" ManuallyRouted="false" />
+        <AssociationConnector Association="up1Model.FK_Reports_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

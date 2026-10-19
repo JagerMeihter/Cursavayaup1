@@ -1,0 +1,209 @@
+﻿<Page x:Class="Cursavayaup1.Pages.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      Title="Админ-панель" Background="White">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Админ-панель" 
+                   FontSize="24" FontWeight="Bold" 
+                   Foreground="#2C3E50" Margin="0,0,0,15"/>
+
+        <TabControl Grid.Row="1" x:Name="AdminTabs">
+            <!-- Вкладка Пользователи -->
+            <TabItem Header="Пользователи">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Поиск и фильтры -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBox x:Name="txtUserSearch" Width="250" Height="32" 
+                                 Padding="6" VerticalContentAlignment="Center"
+                                 TextChanged="TxtUserSearch_TextChanged"/>
+                        <TextBlock Text="  Поиск..." VerticalAlignment="Center" 
+                                   Foreground="Gray" Margin="-240,0,0,0" IsHitTestVisible="False"
+                                   x:Name="txtUserSearchPlaceholder"/>
+
+                        <ComboBox x:Name="cmbUserRoleFilter" Width="140" Height="32" Margin="15,0,0,0"
+                                  SelectionChanged="CmbUserRoleFilter_SelectionChanged"/>
+                    </StackPanel>
+
+                    <!-- Таблица -->
+                    <DataGrid Grid.Row="1" x:Name="UsersGrid"
+                              AutoGenerateColumns="False" IsReadOnly="True"
+                              CanUserAddRows="False" HeadersVisibility="Column"
+                              SelectionMode="Single" SelectionChanged="UsersGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding UserId}" Width="50"/>
+                            <DataGridTextColumn Header="Логин" Binding="{Binding Username}" Width="120"/>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="160"/>
+                            <DataGridTextColumn Header="Роль" Binding="{Binding Role}" Width="90"/>
+                            <DataGridTextColumn Header="Активен" Binding="{Binding IsActive}" Width="70"/>
+                            <DataGridTextColumn Header="Регистрация" Binding="{Binding CreatedAt, StringFormat=\{0:dd.MM.yyyy\}}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!-- Кнопки управления -->
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,12,0,0">
+                        <Button Content="Заблокировать / Разблокировать" Width="200" Height="34"
+                                Margin="0,0,10,0" Click="BtnToggleUserActive_Click"/>
+                        <Button Content="Удалить" Width="100" Height="34" 
+                                Background="#E74C3C" Foreground="White" BorderThickness="0"
+                                Click="BtnDeleteUser_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Вкладка Кампании -->
+            <TabItem Header="Кампании">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBox x:Name="txtCampaignSearch" Width="250" Height="32" 
+                                 Padding="6" TextChanged="TxtCampaignSearch_TextChanged"/>
+                        <ComboBox x:Name="cmbCampaignStatusFilter" Width="140" Height="32" Margin="15,0,0,0"
+                                  SelectionChanged="CmbCampaignStatusFilter_SelectionChanged"/>
+                    </StackPanel>
+
+                    <DataGrid Grid.Row="1" x:Name="CampaignsGrid"
+                              AutoGenerateColumns="False" IsReadOnly="True"
+                              CanUserAddRows="False" HeadersVisibility="Column"
+                              SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding CampaignId}" Width="50"/>
+                            <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
+                            <DataGridTextColumn Header="Цель" Binding="{Binding GoalAmount, StringFormat=\{0:N0\}}" Width="90"/>
+                            <DataGridTextColumn Header="Собрано" Binding="{Binding CurrentAmount, StringFormat=\{0:N0\}}" Width="90"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="90"/>
+                            <DataGridTextColumn Header="Автор" Binding="{Binding CreatorId}" Width="70"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,12,0,0">
+                        <Button Content="Удалить кампанию" Width="150" Height="34"
+                                Background="#E74C3C" Foreground="White" BorderThickness="0"
+                                Click="BtnDeleteCampaign_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Вкладка Пожертвования -->
+            <TabItem Header="Пожертвования">
+                <Grid Margin="10">
+                    <DataGrid x:Name="DonationsGrid"
+                              AutoGenerateColumns="False" IsReadOnly="True"
+                              CanUserAddRows="False" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding DonationId}" Width="50"/>
+                            <DataGridTextColumn Header="Кампания" Binding="{Binding CampaignId}" Width="80"/>
+                            <DataGridTextColumn Header="Пользователь" Binding="{Binding UserId}" Width="90"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Amount, StringFormat=\{0:N0\} ₽}" Width="100"/>
+                            <DataGridTextColumn Header="Дата" Binding="{Binding DonationDate, StringFormat=\{0:dd.MM.yyyy HH:mm\}}" Width="140"/>
+                            <DataGridTextColumn Header="Сообщение" Binding="{Binding Message}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- Вкладка Статистика + график (пока заглушка) -->
+            <TabItem Header="Статистика">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="25">
+
+                        <TextBlock Text="Общая статистика" FontSize="20" FontWeight="Bold" 
+                       Foreground="#2C3E50" Margin="0,0,0,20"/>
+
+                        <!-- Карточки -->
+                        <UniformGrid Columns="2" Margin="0,0,0,30">
+                            <Border Background="#3498DB" CornerRadius="10" Padding="20" Margin="8">
+                                <StackPanel>
+                                    <TextBlock Text="Всего пользователей" Foreground="White" FontSize="14"/>
+                                    <TextBlock x:Name="txtStatUsers" Text="0" Foreground="White" 
+                                   FontSize="32" FontWeight="Bold" Margin="0,5,0,0"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="#27AE60" CornerRadius="10" Padding="20" Margin="8">
+                                <StackPanel>
+                                    <TextBlock Text="Всего кампаний" Foreground="White" FontSize="14"/>
+                                    <TextBlock x:Name="txtStatCampaigns" Text="0" Foreground="White" 
+                                   FontSize="32" FontWeight="Bold" Margin="0,5,0,0"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="#E67E22" CornerRadius="10" Padding="20" Margin="8">
+                                <StackPanel>
+                                    <TextBlock Text="Всего пожертвований" Foreground="White" FontSize="14"/>
+                                    <TextBlock x:Name="txtStatDonations" Text="0" Foreground="White" 
+                                   FontSize="32" FontWeight="Bold" Margin="0,5,0,0"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="#9B59B6" CornerRadius="10" Padding="20" Margin="8">
+                                <StackPanel>
+                                    <TextBlock Text="Собрано всего" Foreground="White" FontSize="14"/>
+                                    <TextBlock x:Name="txtStatTotalAmount" Text="0 ₽" Foreground="White" 
+                                   FontSize="28" FontWeight="Bold" Margin="0,5,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </UniformGrid>
+
+                        <!-- Топ кампаний -->
+                        <TextBlock Text="Топ кампаний по сборам" FontSize="18" FontWeight="SemiBold" 
+                       Foreground="#2C3E50" Margin="0,0,0,12"/>
+
+                        <DataGrid x:Name="TopCampaignsGrid"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserAddRows="False"
+                      HeadersVisibility="Column"
+                      GridLinesVisibility="Horizontal"
+                      BorderThickness="1"
+                      BorderBrush="#DDD"
+                      AlternatingRowBackground="#F8F9FA"
+                      Height="280">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
+                                <DataGridTextColumn Header="Собрано" Binding="{Binding Total, StringFormat=\{0:N0\} ₽}" Width="120"/>
+                                <DataGridTextColumn Header="Цель" Binding="{Binding Goal, StringFormat=\{0:N0\} ₽}" Width="120"/>
+                                <DataGridTextColumn Header="Прогресс" Binding="{Binding Progress, StringFormat=\{0:N1\}%}" Width="100"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Вкладка Экспорт -->
+            <TabItem Header="Экспорт отчётов">
+                <StackPanel Margin="30" HorizontalAlignment="Left">
+                    <TextBlock Text="Экспорт данных" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,20"/>
+
+                    <Button Content="Экспорт пользователей в Excel (.xlsx)" Width="320" Height="40" Margin="0,0,0,12"
+                            Click="BtnExportUsersExcel_Click"/>
+                    <Button Content="Экспорт кампаний в Excel (.xlsx)" Width="320" Height="40" Margin="0,0,0,12"
+                            Click="BtnExportCampaignsExcel_Click"/>
+                    <Button Content="Экспорт пожертвований в Excel (.xlsx)" Width="320" Height="40" Margin="0,0,0,12"
+                            Click="BtnExportDonationsExcel_Click"/>
+
+                    <TextBlock Text="PDF и Word добавим чуть позже" Margin="0,20,0,0" Foreground="Gray"/>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

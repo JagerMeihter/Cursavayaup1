@@ -1,0 +1,34 @@
+﻿<Page x:Class="Cursavayaup1.Pages.MyDonationsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Мои пожертвования" Background="White">
+
+    <Grid Margin="25">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Мои пожертвования" 
+                   FontSize="24" FontWeight="Bold" 
+                   Foreground="#2C3E50" Margin="0,0,0,20"/>
+
+        <DataGrid Grid.Row="1" x:Name="DonationsGrid"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"
+                  BorderThickness="0"
+                  AlternatingRowBackground="#F8F9FA"
+                  RowHeight="40"
+                  FontSize="13">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата" Binding="{Binding DonationDate, StringFormat=\{0:dd.MM.yyyy HH:mm\}}" Width="140"/>
+                <DataGridTextColumn Header="Кампания" Binding="{Binding CampaignTitle}" Width="*"/>
+                <DataGridTextColumn Header="Сумма" Binding="{Binding Amount, StringFormat=\{0:N0\} ₽}" Width="120"/>
+                <DataGridTextColumn Header="Сообщение" Binding="{Binding Message}" Width="200"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
