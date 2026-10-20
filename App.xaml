@@ -4,32 +4,65 @@
              StartupUri="LoginWindow.xaml">
 
     <Application.Resources>
-        <!-- Стиль кнопок меню -->
+
+        <!-- Цвета светлой темы -->
+        <SolidColorBrush x:Key="BgPrimary"     Color="#F3F3F3"/>
+        <SolidColorBrush x:Key="BgSecondary"   Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BgMenu"        Color="#233E76"/>
+        <SolidColorBrush x:Key="TextPrimary"   Color="#233E76"/>
+        <SolidColorBrush x:Key="TextSecondary" Color="#917AA3"/>
+        <SolidColorBrush x:Key="TextOnDark"    Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="Accent"        Color="#0198AF"/>
+        <SolidColorBrush x:Key="Success"       Color="#4DC6C5"/>
+        <SolidColorBrush x:Key="Danger"        Color="#DD4B42"/>
+        <SolidColorBrush x:Key="BorderColor"   Color="#EAEBED"/>
+        <SolidColorBrush x:Key="CardBg"        Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="InputBg"       Color="#FFFFFF"/>
+
+        <FontFamily x:Key="AppFont">Segoe UI, Arial</FontFamily>
+
+        <!-- Кнопки меню (простой стиль) -->
         <Style x:Key="MenuButton" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Height" Value="42"/>
             <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="Padding" Value="20,0,0,0"/>
             <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Left"
-                                              Margin="{TemplateBinding Padding}"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#34495E"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1A2F5A"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
+
+        <!-- Основная кнопка -->
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#0198AF"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="16,0"/>
+        </Style>
+
+        <!-- Кнопка удаления -->
+        <Style x:Key="DangerButton" TargetType="Button">
+            <Setter Property="Background" Value="#DD4B42"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="12,0"/>
+        </Style>
+
     </Application.Resources>
 </Application>

@@ -65,12 +65,8 @@ namespace Cursavayaup1
         private void BtnTheme_Click(object sender, RoutedEventArgs e)
         {
             Helpers.ThemeManager.ToggleTheme();
-
-            // Меняем текст кнопки
-            if (Helpers.ThemeManager.IsDark)
-                btnTheme.Content = "☀️ Светлая тема";
-            else
-                btnTheme.Content = "🌙 Тёмная тема";
+            btnTheme.Content = Helpers.ThemeManager.IsDark ? "Светлая тема" : "Тёмная тема";
         }
+        
     }
 }

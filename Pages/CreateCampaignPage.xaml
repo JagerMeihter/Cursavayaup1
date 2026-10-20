@@ -1,7 +1,9 @@
 ﻿<Page x:Class="Cursavayaup1.Pages.CreateCampaignPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Создать кампанию" Background="White">
+      Title="Создать кампанию"
+      Background="{DynamicResource BgSecondary}"
+      FontFamily="{DynamicResource AppFont}">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="30" MaxWidth="700">
@@ -13,65 +15,64 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Создание новой кампании" 
-                       FontSize="24" FontWeight="Bold" Margin="0,0,0,25"
-                       Foreground="#2C3E50"/>
+            <TextBlock Grid.Row="0" Text="Создание новой кампании"
+                       FontSize="22" FontWeight="Bold" Margin="0,0,0,22"
+                       Foreground="{DynamicResource TextPrimary}"/>
 
-            <!-- Название -->
-            <StackPanel Grid.Row="1" Margin="0,0,0,15">
-                <TextBlock Text="Название кампании *" Margin="0,0,0,5"/>
-                <TextBox x:Name="txtTitle" Height="36" Padding="8"/>
+            <StackPanel Grid.Row="1" Margin="0,0,0,12">
+                <TextBlock Text="Название *" Margin="0,0,0,4" Foreground="{DynamicResource TextSecondary}"/>
+                <TextBox x:Name="txtTitle" Height="36" Padding="8"
+                         Background="{DynamicResource InputBg}" Foreground="{DynamicResource TextPrimary}"
+                         BorderBrush="{DynamicResource BorderColor}"/>
             </StackPanel>
 
-            <!-- Краткое описание -->
-            <StackPanel Grid.Row="2" Margin="0,0,0,15">
-                <TextBlock Text="Краткое описание (для карточки)" Margin="0,0,0,5"/>
-                <TextBox x:Name="txtShortDescription" Height="36" Padding="8"/>
+            <StackPanel Grid.Row="2" Margin="0,0,0,12">
+                <TextBlock Text="Краткое описание" Margin="0,0,0,4" Foreground="{DynamicResource TextSecondary}"/>
+                <TextBox x:Name="txtShortDescription" Height="36" Padding="8"
+                         Background="{DynamicResource InputBg}" Foreground="{DynamicResource TextPrimary}"
+                         BorderBrush="{DynamicResource BorderColor}"/>
             </StackPanel>
 
-            <!-- Полное описание -->
-            <StackPanel Grid.Row="3" Margin="0,0,0,15">
-                <TextBlock Text="Полное описание *" Margin="0,0,0,5"/>
-                <TextBox x:Name="txtDescription" Height="120" Padding="8"
+            <StackPanel Grid.Row="3" Margin="0,0,0,12">
+                <TextBlock Text="Полное описание *" Margin="0,0,0,4" Foreground="{DynamicResource TextSecondary}"/>
+                <TextBox x:Name="txtDescription" Height="110" Padding="8"
                          TextWrapping="Wrap" AcceptsReturn="True"
+                         Background="{DynamicResource InputBg}" Foreground="{DynamicResource TextPrimary}"
+                         BorderBrush="{DynamicResource BorderColor}"
                          VerticalScrollBarVisibility="Auto"/>
             </StackPanel>
 
-            <!-- Цель и категория -->
-            <Grid Grid.Row="4" Margin="0,0,0,15">
+            <Grid Grid.Row="4" Margin="0,0,0,12">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="16"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
                 <StackPanel Grid.Column="0">
-                    <TextBlock Text="Целевая сумма (₽) *" Margin="0,0,0,5"/>
-                    <TextBox x:Name="txtGoalAmount" Height="36" Padding="8"/>
+                    <TextBlock Text="Целевая сумма (₽) *" Margin="0,0,0,4" Foreground="{DynamicResource TextSecondary}"/>
+                    <TextBox x:Name="txtGoalAmount" Height="36" Padding="8"
+                             Background="{DynamicResource InputBg}" Foreground="{DynamicResource TextPrimary}"
+                             BorderBrush="{DynamicResource BorderColor}"/>
                 </StackPanel>
-
                 <StackPanel Grid.Column="2">
-                    <TextBlock Text="Категория" Margin="0,0,0,5"/>
-                    <ComboBox x:Name="cmbCategory" Height="36" Padding="8"/>
+                    <TextBlock Text="Категория" Margin="0,0,0,4" Foreground="{DynamicResource TextSecondary}"/>
+                    <ComboBox x:Name="cmbCategory" Height="36" Padding="6"
+                              Background="{DynamicResource InputBg}"
+                              BorderBrush="{DynamicResource BorderColor}"/>
                 </StackPanel>
             </Grid>
 
-            <!-- Дата окончания -->
-            <StackPanel Grid.Row="5" Margin="0,0,0,25">
-                <TextBlock Text="Дата окончания" Margin="0,0,0,5"/>
-                <DatePicker x:Name="dpEndDate" Height="36" Padding="8"/>
+            <StackPanel Grid.Row="5" Margin="0,0,0,22">
+                <TextBlock Text="Дата окончания" Margin="0,0,0,4" Foreground="{DynamicResource TextSecondary}"/>
+                <DatePicker x:Name="dpEndDate" Height="36" Padding="6"
+                            Background="{DynamicResource InputBg}"
+                            BorderBrush="{DynamicResource BorderColor}"/>
             </StackPanel>
 
-            <!-- Кнопка -->
-            <Button Grid.Row="6" Content="Создать кампанию" 
-                    Width="200" Height="42" HorizontalAlignment="Left"
-                    Background="#3498DB" Foreground="White" BorderThickness="0"
-                    FontWeight="SemiBold" Cursor="Hand"
-                    Click="BtnCreate_Click"/>
+            <Button Grid.Row="6" Content="Создать кампанию" Style="{StaticResource PrimaryButton}"
+                    Width="180" HorizontalAlignment="Left" Height="40" Click="BtnCreate_Click"/>
         </Grid>
     </ScrollViewer>
 </Page>
