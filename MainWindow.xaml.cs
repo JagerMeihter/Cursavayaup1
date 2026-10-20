@@ -62,5 +62,15 @@ namespace Cursavayaup1
             login.Show();
             this.Close();
         }
+        private void BtnTheme_Click(object sender, RoutedEventArgs e)
+        {
+            Helpers.ThemeManager.ToggleTheme();
+
+            // Меняем текст кнопки
+            if (Helpers.ThemeManager.IsDark)
+                btnTheme.Content = "☀️ Светлая тема";
+            else
+                btnTheme.Content = "🌙 Тёмная тема";
+        }
     }
 }

@@ -46,7 +46,13 @@
                             Style="{StaticResource MenuButton}" 
                             Click="BtnAdmin_Click"
                             Visibility="Collapsed"/>
+
+                    <!--<Button x:Name="btnTheme" 
+                            Content="🌙 Тёмная тема" 
+                            Style="{StaticResource MenuButton}" 
+                            Click="BtnTheme_Click"/>-->
                 </StackPanel>
+                
 
                 <!-- Выход -->
                 <Button DockPanel.Dock="Bottom" 
